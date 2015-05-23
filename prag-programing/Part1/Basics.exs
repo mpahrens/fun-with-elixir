@@ -41,7 +41,7 @@ basics_float3 = 0.31131313e10
 basics_regex1 = Regex.run ~r{[aeiou]}, "caterpillar" # ["a"]
 basics_regex2 = Regex.scan ~r{[aeiou]}, "caterpillar" # [["a"],["e"],["i"],["a"]]
 basics_regex3 = Regex.split ~r{[aeiou]}, "caterpillar" # ["c","t", "rp", "ll", "r"]
-basics_regex4 = Regex.replace ~r{[aeiou]}, "caterpillar", * # "c*t*rp*ll*r"
+basics_regex4 = Regex.replace ~r{[aeiou]}, "caterpillar", "*" # "c*t*rp*ll*r"
 
 #PID
 
@@ -70,14 +70,15 @@ self
 
 #Maps
 my_map = %{:name => "Matthew", :city => "Medford"} # also could use: %{name: "Matthew", city: "Medford"} to mean the same thing as a shortcut
+my_other_map = %{:species  => :dog, :name  =>  "Roofus"}
 
 my_map[:name] # "Matthew" -- pulling something from the list that doesn't exist can result in nil
 
+IO.puts my_map[:name]
+
 #can use pretty much anything as a key
 %{
-  {:error,:enoent} => :fatal,
-   :error, :busy}  => :retry
- }
+  {:error,:enoent} => :fatal,{:error, :busy}  => :retry}
 
  #can use . notation
  my_map.name # if key does not exist, gets KeyError instead of nil
@@ -146,3 +147,4 @@ list1 -- list2
 
 #in operator
 a in enum #tests if a is included in enum, bool value
+"""
